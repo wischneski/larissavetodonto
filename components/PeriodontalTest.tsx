@@ -10,7 +10,7 @@ export const PeriodontalTest: React.FC = () => {
     <>
       {/* Call to Action Section */}
       <section id="periodontal-test" className="py-16 md:py-20 bg-brand-900 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#a87b62_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#a87b62_1px,transparent_1px)] bg-size-[16px_16px]"></div>
         
         <div className="container mx-auto px-4 relative z-10 text-center">
           <motion.div

@@ -10,16 +10,16 @@ const services: ServiceItem[] = [
     title: 'Limpeza de Tártaro (Profilaxia)',
     description: 'A base da saúde bucal. Removemos a placa bacteriana que causa doenças cardíacas e renais, devolvendo o hálito fresco.',
     icon: <Sparkles className="w-5 h-5" />,
-    imageUrl: '/images/dente1.jpg',
+    imageUrl: '/images/dente1.webp',
     className: 'md:col-span-2'
   },
   {
     id: '2',
-    category: 'Endodontia',
-    title: 'Canal & Recuperação',
-    description: 'Tratamento especializado para dentes fraturados. Evitamos a extração desnecessária e eliminamos a dor do seu pet.',
+    category: 'Animais Exóticos',
+    title: 'Odontologia para Animais Exóticos',
+    description: 'Atendimento especializado para espécies exóticas — aves, répteis e pequenos mamíferos. Manejo, diagnóstico e tratamentos adaptados à anatomia e comportamento de cada espécie.',
     icon: <Activity className="w-5 h-5" />,
-    imageUrl: 'https://images.pexels.com/photos/6234603/pexels-photo-6234603.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    imageUrl: '/images/exoticos.webp',
     className: 'md:col-span-1'
   },
   {
@@ -28,7 +28,7 @@ const services: ServiceItem[] = [
     title: 'Cirurgia Oral Avançada',
     description: 'Extrações complexas e tratamento de neoplasias com monitoramento anestésico de ponta para total segurança.',
     icon: <Stethoscope className="w-5 h-5" />,
-    imageUrl: 'https://images.pexels.com/photos/6235008/pexels-photo-6235008.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    imageUrl: '/images/cirurgia.webp',
     className: 'md:col-span-1'
   },
   {
@@ -37,7 +37,7 @@ const services: ServiceItem[] = [
     title: 'Correção de Mordida',
     description: 'Aparelhos e técnicas para corrigir dentes que machucam a boca, garantindo conforto e funcionalidade na mastigação.',
     icon: <Bone className="w-5 h-5" />,
-    imageUrl: 'https://images.pexels.com/photos/1805164/pexels-photo-1805164.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    imageUrl: '/images/aparelho.webp',
     className: 'md:col-span-2'
   }
 ];
@@ -92,7 +92,9 @@ export const Services: React.FC = () => {
                 <div className="absolute inset-0 bg-brand-900/30 group-hover:bg-brand-900/10 transition-colors duration-500 z-10" />
                 <img 
                   src={service.imageUrl} 
-                  alt={service.title} 
+                  alt={service.title}
+                  loading="lazy"
+                  style={{ objectPosition: service.id === '2' ? '50% 35%' : service.id === '4' ? '50% 65%' : 'center' }}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
               </div>

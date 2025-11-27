@@ -64,12 +64,17 @@ export const Hero: React.FC = () => {
         >
           {/* Elegant Shape Container - Reduzido no mobile */}
           <div className="relative w-full max-w-[280px] md:max-w-md aspect-3/4 rounded-t-[5rem] md:rounded-t-[10rem] rounded-b-4xl overflow-hidden shadow-2xl border-4 md:border-8 border-white mx-auto">
-             {/* Imagem da Dra. Larissa */}
-            <img 
-              src="/images/dr-larissa.png" 
-              alt="Dra. Larissa VetOdonto" 
-              className="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-[1.5s]"
-            />
+             {/* Imagem da Dra. Larissa - WebP com fallback */}
+            <picture>
+              <source srcSet="/images/dr-larissa.webp" type="image/webp" />
+              <img 
+                src="/images/dr-larissa.png" 
+                alt="Dra. Larissa VetOdonto" 
+                loading="eager"
+                fetchPriority="high"
+                className="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-[1.5s]"
+              />
+            </picture>
             
             {/* Floating Info Card - Compacto no mobile */}
             <motion.div 

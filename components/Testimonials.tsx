@@ -8,7 +8,7 @@ const testimonials: Testimonial[] = [
     id: '1',
     name: 'Ana Paula Souza',
     petName: 'Thor (Golden Retriever)',
-    text: 'A Dra. Larissa foi um anjo. O Thor estava com muita dor por causa de um dente quebrado e eu nem sabia. O tratamento de canal salvou o dente dele e ele voltou a brincar como filhote!',
+    text: 'A Dra. Larissa foi um anjo. O Thor estava com muita dor por causa de um dente quebrado e eu nem sabia. O tratamento salvou o dente dele e ele voltou a brincar como filhote!',
     avatarUrl: 'https://images.unsplash.com/photo-1517423440428-a5a00ad493e8?q=80&w=1000&auto=format&fit=crop'
   },
   {
@@ -81,19 +81,10 @@ export const Testimonials: React.FC = () => {
                   </p>
                 </div>
 
-                {/* Author */}
-                <div className="flex items-center gap-3 md:gap-4 pt-4 md:pt-6 border-t border-brand-50">
-                  <div className="w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden border-2 border-brand-200">
-                    <img 
-                      src={item.avatarUrl} 
-                      alt={item.name} 
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-brand-900 text-sm">{item.name}</h4>
-                    <p className="text-brand-500 text-[10px] md:text-xs font-medium uppercase tracking-wide">{item.petName}</p>
-                  </div>
+                {/* Author (no avatar / pet photo) */}
+                <div className="pt-4 md:pt-6 border-t border-brand-50">
+                  <h4 className="font-bold text-brand-900 text-sm">{item.name}</h4>
+                  <p className="text-brand-500 text-[10px] md:text-xs font-medium uppercase tracking-wide">{item.petName}</p>
                 </div>
               </div>
             </motion.div>
