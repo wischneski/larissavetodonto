@@ -1,46 +1,115 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { ClipboardCheck, Check, X, AlertCircle, Activity, HeartPulse, Stethoscope, ArrowLeft } from 'lucide-react';
-import { getWhatsAppLink } from '../services/whatsapp';
+import { ClipboardCheck, X, AlertCircle, Activity, HeartPulse, Stethoscope, ArrowLeft } from 'lucide-react';
+import { WelcomeScreen } from '../components/quiz/WelcomeScreen';
+import { ResultScreen } from '../components/quiz/ResultScreen';
+import { MultiChoiceQuestion } from '../components/quiz/MultiChoiceQuestion';
+import { YesNoQuestion } from '../components/quiz/YesNoQuestion';
+import { ImageQuestion } from '../components/quiz/ImageQuestion';
 
 type Question = {
   id: number;
   text: string;
   icon: React.ReactNode;
+  type: 'multi-choice' | 'yes-no' | 'image';
 };
 
 const questions: Question[] = [
   { 
     id: 1, 
     text: "Ao chegar perto do rostinho dele(a), você sente um mau hálito forte?", 
-    icon: <Activity className="w-6 h-6" /> 
+    icon: <Activity className="w-6 h-6" />,
+    type: 'multi-choice'
   },
   { 
     id: 2, 
-    text: "Você nota dentes amarelados, amarronzados ou com 'pedrinhas'?", 
-    icon: <ClipboardCheck className="w-6 h-6" /> 
+    text: "Os dentes estão limpos? (Selecione 1 das 4 opções)", 
+    icon: <ClipboardCheck className="w-6 h-6" />,
+    type: 'image'
   },
   { 
     id: 3, 
-    text: "A gengiva parece vermelha, inchada ou sangra ao escovar/tocar?", 
-    icon: <HeartPulse className="w-6 h-6" /> 
+    text: "Há inflamação presente na gengiva? (Selecione 1 das 4 opções)", 
+    icon: <HeartPulse className="w-6 h-6" />,
+    type: 'image'
   },
   { 
     id: 4, 
-    text: "Ele(a) tem deixado a ração cair da boca ou mastiga só de um lado?", 
-    icon: <Stethoscope className="w-6 h-6" /> 
+    text: "Ele(a) tem deixado a ração cair da boca ao mastigar?", 
+    icon: <Activity className="w-6 h-6" />,
+    type: 'multi-choice'
   },
   { 
     id: 5, 
-    text: "Ele(a) evita que toquem no focinho ou esfrega o rosto nos móveis?", 
-    icon: <AlertCircle className="w-6 h-6" /> 
+    text: "Como está a mordida e posição dos dentes? (Selecione 1 das 4 opções)", 
+    icon: <AlertCircle className="w-6 h-6" />,
+    type: 'image'
   },
   { 
     id: 6, 
-    text: "Você percebeu espirros frequentes ou secreção nasal recentemente?", 
-    icon: <Activity className="w-6 h-6" /> 
+    text: "Existe algum dente quebrado? (Selecione 1 das 4 opções)", 
+    icon: <Stethoscope className="w-6 h-6" />,
+    type: 'image'
   }
+  ,
+  {
+    id: 7,
+    text: "Consegue identificar alguns dentes de leite (Esses mais finos)?",
+    icon: <Activity className="w-6 h-6" />,
+    type: 'yes-no'
+  }
+];
+
+const question1Options = [
+  { 
+    label: 'NÃO', 
+    value: 0, 
+    className: 'py-3 md:py-4 rounded-xl border-2 border-brand-100 text-brand-600 font-medium hover:border-brand-500 hover:bg-brand-50 transition-all flex justify-center items-center gap-2 text-sm md:text-base'
+  },
+  { 
+    label: 'ALGUMAS VEZES', 
+    value: 1, 
+    className: 'py-3 md:py-4 rounded-xl bg-brand-50 text-brand-900 font-medium hover:bg-brand-100 transition-all border border-brand-100 flex justify-center items-center gap-2 text-sm md:text-base'
+  },
+  { 
+    label: 'FREQUENTEMENTE', 
+    value: 2, 
+    className: 'py-3 md:py-4 rounded-xl bg-brand-500 text-white font-medium hover:bg-brand-600 transition-all shadow-lg flex justify-center items-center gap-2 text-sm md:text-base'
+  },
+  { 
+    label: 'SEMPRE', 
+    value: 3, 
+    className: 'py-3 md:py-4 rounded-xl bg-brand-700 text-white font-bold hover:bg-brand-800 transition-all shadow-lg flex justify-center items-center gap-2 text-sm md:text-base'
+  }
+];
+
+const question2Options = [
+  { value: 0, image: '/images/1.jpg', alt: 'Sem tártaro', label: 'Sem tártaro', iconType: 'check' as const },
+  { value: 1, image: '/images/22_moderate_calculus.jpg', alt: 'Tártaro presente', label: 'Tártaro presente', iconType: 'alert' as const },
+  { value: 2, image: '/images/23_advanced_calculus.jpg', alt: 'Tártaro cobrindo todos os dentes', label: 'Tártaro cobrindo todos os dentes', iconType: 'alert-orange' as const },
+  { value: 3, image: '/images/24_severe_calculus.jpg', alt: 'Grande quantidade de placa de Tártaro', label: 'Grande quantidade de placa de Tártaro', iconType: 'x' as const }
+];
+
+const question3Options = [
+  { value: 0, image: '/images/31b_no_inflammation.jpg', alt: 'Gengiva saudável', label: 'Gengiva rosada ou com a pigmentação natural', iconType: 'check' as const },
+  { value: 1, image: '/images/32b_moderate_inflammation.jpg', alt: 'Inflamação moderada', label: 'A borda da gengiva está vermelha', iconType: 'alert' as const },
+  { value: 2, image: '/images/33_advanced_inflammation.jpg', alt: 'Inflamação avançada', label: 'A gengiva está vermelha ao longo de toda boca', iconType: 'alert-orange' as const },
+  { value: 3, image: '/images/34b_severe_inflammation.jpg', alt: 'Inflamação severa', label: 'Existe sangramento ou diminuição da gengiva e a raiz do dente está aparecendo', iconType: 'x' as const }
+];
+
+const question5Options = [
+  { value: 0, image: '/images/41_normal.jpg', alt: 'Mordida normal', label: 'Os caninos se encaixam perfeitamente', iconType: 'check' as const },
+  { value: 1, image: '/images/42_single_tooth_displaced.jpg', alt: 'Dentes desalinhados', label: 'Parece que alguns dentes estão desalinhados', iconType: 'alert' as const },
+  { value: 2, image: '/images/43_mandible_short.jpg', alt: 'Dentes sobrepostos', label: 'Existem dentes se sobrepondo', iconType: 'alert-orange' as const },
+  { value: 3, image: '/images/44_mandible_long.jpg', alt: 'Prognatismo', label: 'Os dentes de baixo estão bem para frente', iconType: 'x' as const }
+];
+
+const question6Options = [
+  { value: 0, image: '/images/51_intact.jpg', alt: 'Dente intacto', label: "A superfície do dente está intacta", iconType: 'check' as const },
+  { value: 1, image: '/images/54_uncompl.jpg', alt: 'Quebra sem pinta', label: "O dente está quebrado mas não aparece nenhuma 'pinta'", iconType: 'alert' as const },
+  { value: 2, image: '/images/53_old.jpg', alt: 'Quebra com pinta castanha', label: "O dente está quebrado e apresenta uma 'pinta' castanha ou preta no centro", iconType: 'alert-orange' as const },
+  { value: 3, image: '/images/52a_fresh.jpg', alt: 'Quebra com pinta vermelha', label: "O dente está quebrado e apresenta uma 'pinta' vermelha e pode estar sangrando", iconType: 'x' as const }
 ];
 
 export const VetOdontoScorePage: React.FC = () => {
@@ -48,10 +117,13 @@ export const VetOdontoScorePage: React.FC = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const [score, setScore] = useState(0);
   const [showResult, setShowResult] = useState(false);
+  const [showWelcome, setShowWelcome] = useState(true);
 
-  const handleAnswer = (isYes: boolean) => {
-    if (isYes) setScore(s => s + 1);
-    
+  const handleAnswer = (value: number) => {
+    if (typeof value === 'number' && value > 0) {
+      setScore(s => s + value);
+    }
+
     if (currentStep < questions.length - 1) {
       setCurrentStep(c => c + 1);
     } else {
@@ -59,44 +131,72 @@ export const VetOdontoScorePage: React.FC = () => {
     }
   };
 
+  const handlePrevious = () => {
+    if (currentStep > 0) {
+      setCurrentStep(c => c - 1);
+    }
+  };
+
   const handleClose = () => {
     navigate('/');
   };
 
-  const getResult = () => {
-    if (score === 0) return {
-      title: "Sorriso Saudável!",
-      desc: "Parabéns! Continue com a prevenção e escovação diária.",
-      color: "text-green-600",
-      bg: "bg-green-50",
-      cta: "Agendar Check-up Preventivo"
-    };
-    if (score <= 2) return {
-      title: "Sinal de Alerta (Gengivite)",
-      desc: "Há sinais iniciais de doença periodontal. O tratamento agora evita dores futuras.",
-      color: "text-brand-500",
-      bg: "bg-brand-50",
-      cta: "Agendar Limpeza de Tártaro"
-    };
-    return {
-      title: "Risco Alto (Periodontite)",
-      desc: "Seu pet pode estar sentindo dor silenciosa. Bactérias podem afetar órgãos vitais.",
-      color: "text-red-600",
-      bg: "bg-red-50",
-      cta: "Solicitar Avaliação Urgente"
-    };
+  const renderQuestion = () => {
+    const question = questions[currentStep];
+    
+    switch (question.type) {
+      case 'multi-choice':
+        return (
+          <MultiChoiceQuestion 
+            onAnswer={handleAnswer}
+            onPrevious={handlePrevious}
+            showPrevious={currentStep > 0}
+            options={question1Options}
+          />
+        );
+      case 'image':
+        const imageOptions = question.id === 2 ? question2Options : 
+                             question.id === 3 ? question3Options : 
+                             question.id === 5 ? question5Options : question6Options;
+        return (
+          <ImageQuestion 
+            onAnswer={handleAnswer}
+            onPrevious={handlePrevious}
+            showPrevious={currentStep > 0}
+            options={imageOptions}
+          />
+        );
+      case 'yes-no':
+        return (
+          <YesNoQuestion 
+            onAnswer={handleAnswer}
+            onPrevious={handlePrevious}
+            showPrevious={currentStep > 0}
+            imageSrc={question.id === 7 ? '/images/61b_primary_upper.jpg' : undefined}
+            imageAlt={question.id === 7 ? 'Dentes de leite' : undefined}
+            imageLabel={question.id === 7 ? 'Vejo um ou mais dentes de leite' : undefined}
+          />
+        );
+    }
   };
-
-  const resultData = getResult();
 
   return (
     <div className="min-h-screen bg-brand-900/60 backdrop-blur-md flex items-center justify-center p-4">
       <motion.div
-        initial={{ scale: 0.9, opacity: 0 }}
+        initial={{ scale: 0.95, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
-        exit={{ scale: 0.9, opacity: 0 }}
-        className="bg-white w-full max-w-lg rounded-3xl shadow-2xl overflow-hidden relative border border-brand-100"
+        exit={{ scale: 0.95, opacity: 0 }}
+        className="bg-white w-full max-w-full sm:max-w-3xl md:max-w-4xl lg:max-w-5xl rounded-3xl shadow-2xl overflow-hidden relative border border-brand-100 md:min-h-[70vh] pb-24"
       >
+        {/* Modal Header Logo */}
+        <div className="w-full border-b border-brand-100">
+          <div className="container mx-auto px-4 py-4 flex justify-center">
+            <a href="#" className="text-2xl font-display font-bold text-brand-900 tracking-tight">
+              Larissa<span className="text-brand-500 italic font-normal">.VetOdonto</span>
+            </a>
+          </div>
+        </div>
+
         {/* Close Button */}
         <button 
           onClick={handleClose}
@@ -114,9 +214,11 @@ export const VetOdontoScorePage: React.FC = () => {
           <span className="text-sm font-medium">Voltar</span>
         </button>
 
-        {!showResult ? (
+        {showWelcome ? (
+          <WelcomeScreen onStart={() => setShowWelcome(false)} />
+        ) : !showResult ? (
           /* Question Step */
-          <div className="p-6 md:p-12 pt-16 md:pt-16">
+          <div className="p-6 md:p-12 pt-16 md:pt-16 pb-6">
             <div className="mb-6 md:mb-8">
               <div className="flex justify-between text-xs font-bold text-brand-400 uppercase tracking-widest mb-2">
                 <span>Pergunta {currentStep + 1} de {questions.length}</span>
@@ -148,50 +250,19 @@ export const VetOdontoScorePage: React.FC = () => {
               </motion.div>
             </AnimatePresence>
 
-            <div className="grid grid-cols-2 gap-3 md:gap-4 mt-6 md:mt-8">
-              <button
-                onClick={() => handleAnswer(false)}
-                className="py-3 md:py-4 rounded-xl border-2 border-brand-100 text-brand-600 font-medium hover:border-brand-500 hover:bg-brand-50 transition-all flex justify-center items-center gap-2 text-sm md:text-base"
-              >
-                Não
-              </button>
-              <button
-                onClick={() => handleAnswer(true)}
-                className="py-3 md:py-4 rounded-xl bg-brand-900 text-white font-medium hover:bg-brand-700 transition-all shadow-lg flex justify-center items-center gap-2 text-sm md:text-base"
-              >
-                <Check className="w-4 h-4" /> Sim
-              </button>
-            </div>
+            {renderQuestion()}
           </div>
         ) : (
-          /* Result Step */
-          <div className="p-6 md:p-12 pt-16 md:pt-16 text-center">
-             <div className={`w-16 h-16 md:w-20 md:h-20 mx-auto rounded-full flex items-center justify-center mb-4 md:mb-6 ${resultData.bg} ${resultData.color}`}>
-               <Activity className="w-8 h-8 md:w-10 md:h-10" />
-             </div>
-             
-             <h3 className="text-2xl md:text-3xl font-display text-brand-900 mb-3 md:mb-4">
-               {resultData.title}
-             </h3>
-             
-             <p className="text-brand-600 mb-6 md:mb-8 leading-relaxed text-sm md:text-base">
-               {resultData.desc}
-             </p>
-
-             <div className="bg-brand-50 p-4 rounded-xl mb-6 md:mb-8 border border-brand-100">
-               <p className="text-xs md:text-sm text-brand-500 italic">
-                 "Lembre-se: Este teste é educativo e não substitui a avaliação clínica presencial."
-               </p>
-             </div>
-
-             <button 
-               onClick={() => window.open(getWhatsAppLink(), '_blank')}
-               className="block w-full py-3 md:py-4 bg-brand-500 text-white rounded-xl font-bold shadow-xl hover:bg-brand-600 transition-colors text-sm md:text-base"
-             >
-               {resultData.cta}
-             </button>
-          </div>
+          <ResultScreen score={score} />
         )}
+
+        {/* Footer - fixed at bottom of modal */}
+        <div className="absolute left-0 right-0 bottom-0 border-t border-brand-100 bg-white">
+          <div className="container mx-auto px-4 py-4 text-center">
+            <p className="text-brand-400 text-sm">© 2026 Todos os direitos reservados - VCS Veterinary Care Support</p>
+            <p className="text-brand-400 text-sm mt-1">Created by SOLIDUS Systems</p>
+          </div>
+        </div>
       </motion.div>
     </div>
   );

@@ -24,14 +24,11 @@ export const HomePage: React.FC = () => {
         <Contact />
       </main>
 
-      <footer className="bg-brand-100 py-10 border-t border-brand-200 text-center relative z-10">
+      <footer className="bg-brand-100 py-8 border-t border-brand-200 text-center relative z-10">
         <div className="container mx-auto px-4">
-          <p className="text-brand-600 font-serif italic text-lg mb-2">
-            Larissa VetOdonto
-          </p>
-          <p className="text-brand-400 text-sm">
-            © {new Date().getFullYear()} Todos os direitos reservados.
-          </p>
+          <p className="text-brand-600 font-serif italic text-lg mb-2">Larissa VetOdonto</p>
+          <p className="text-brand-400 text-sm">© 2026 Todos os direitos reservados - VCS Veterinary Care Support</p>
+          <p className="text-brand-400 text-sm mt-1">Created by SOLIDUS Systems</p>
         </div>
       </footer>
 

@@ -22,15 +22,10 @@ export const Header: React.FC = () => {
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-8">
-          {['Início', 'Sobre', 'Serviços', 'Depoimentos'].map((item) => (
-            <a 
-              key={item} 
-              href={`#${item.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")}`} 
-              className="text-brand-800 hover:text-brand-500 transition font-medium text-sm tracking-wide uppercase"
-            >
-              {item}
-            </a>
-          ))}
+          <a href="#" className="text-brand-800 hover:text-brand-500 transition font-medium text-sm tracking-wide uppercase">Início</a>
+          <a href="#about" className="text-brand-800 hover:text-brand-500 transition font-medium text-sm tracking-wide uppercase">Sobre</a>
+          <a href="#services" className="text-brand-800 hover:text-brand-500 transition font-medium text-sm tracking-wide uppercase">Serviços</a>
+          <a href="#depoimentos" className="text-brand-800 hover:text-brand-500 transition font-medium text-sm tracking-wide uppercase">Depoimentos</a>
           <a href={getWhatsAppLink()} target="_blank" rel="noopener noreferrer" className="px-6 py-2.5 bg-brand-900 text-brand-50 rounded-full font-medium text-sm hover:bg-brand-800 transition shadow-lg shadow-brand-900/10">
             Agendar Agora
           </a>

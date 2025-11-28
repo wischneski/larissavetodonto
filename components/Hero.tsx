@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Calendar, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { getWhatsAppLink } from '../services/whatsapp';
 
 export const Hero: React.FC = () => {
@@ -44,14 +45,11 @@ export const Hero: React.FC = () => {
               Agendar 1ª Avaliação
               <ArrowRight className="w-4 h-4" />
             </motion.a>
-            <motion.a
-              href="#periodontal-test"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="px-6 py-3 md:px-8 md:py-4 bg-transparent border border-brand-300 text-brand-800 rounded-full font-medium text-sm md:text-lg hover:bg-brand-100 transition flex items-center justify-center text-center leading-tight"
-            >
-              Descubra o Grau de Saúde
-            </motion.a>
+            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+              <Link to="/vetodontoscore" className="px-6 py-3 md:px-8 md:py-4 bg-transparent border border-brand-300 text-brand-800 rounded-full font-medium text-sm md:text-lg hover:bg-brand-100 transition flex items-center justify-center text-center leading-tight">
+                Iniciar Teste de Saúde Bucal
+              </Link>
+            </motion.div>
           </div>
         </motion.div>
 
@@ -84,7 +82,7 @@ export const Hero: React.FC = () => {
               className="absolute bottom-4 left-4 right-4 md:bottom-8 md:left-8 md:right-8 glass-card p-4 md:p-6 rounded-xl text-center md:text-left"
             >
               <p className="font-display italic text-lg md:text-2xl text-brand-900 mb-1">Cuidado & Carinho</p>
-              <p className="text-xs md:text-sm text-brand-600">Especialista em cães e gatos.</p>
+              <p className="text-xs md:text-sm text-brand-600">Especialista em Odontologia de cães, gatos e exóticos.</p>
             </motion.div>
           </div>
 
