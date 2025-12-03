@@ -49,7 +49,7 @@ export const About: React.FC = () => {
               <picture>
                 <source srcSet="/images/lov-dog.webp" type="image/webp" />
                 <img 
-                  src="/images/lov-dog.jpg" 
+                  src="/images/lov-dog.webp" 
                   alt="Atendimento Veterinário"
                   loading="lazy"
                   className="w-full rounded-4xl shadow-2xl object-cover aspect-video md:aspect-4/5"

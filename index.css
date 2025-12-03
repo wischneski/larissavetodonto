@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* stylelint-disable-next-line at-rule-no-unknown */
+/* @theme is a Tailwind CSS v4 directive */
+/* stylelint-disable-next-line at-rule-no-unknown */
 @theme {
   /* Fonts */
   --font-sans: "Plus Jakarta Sans", sans-serif;

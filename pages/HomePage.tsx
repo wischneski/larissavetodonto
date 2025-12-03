@@ -1,27 +1,36 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { Header } from '../components/Header';
 import { Hero } from '../components/Hero';
-import { Services } from '../components/Services';
-import { About } from '../components/About';
-import { Testimonials } from '../components/Testimonials';
-import { PeriodontalTest } from '../components/PeriodontalTest';
-import { Contact } from '../components/Contact';
-import { FloatingParticles } from '../components/FloatingParticles';
-import { WhatsAppButton } from '../components/WhatsAppButton';
+
+// Lazy load componentes abaixo do fold para reduzir JS inicial
+const Services = lazy(() => import('../components/Services').then(m => ({ default: m.Services })));
+const About = lazy(() => import('../components/About').then(m => ({ default: m.About })));
+const Testimonials = lazy(() => import('../components/Testimonials').then(m => ({ default: m.Testimonials })));
+const PeriodontalTest = lazy(() => import('../components/PeriodontalTest').then(m => ({ default: m.PeriodontalTest })));
+const Contact = lazy(() => import('../components/Contact').then(m => ({ default: m.Contact })));
+const FloatingParticles = lazy(() => import('../components/FloatingParticles').then(m => ({ default: m.FloatingParticles })));
+const WhatsAppButton = lazy(() => import('../components/WhatsAppButton').then(m => ({ default: m.WhatsAppButton })));
+
+// Fallback vazio para componentes visuais
+const EmptyFallback = () => null;
 
 export const HomePage: React.FC = () => {
   return (
     <div className="min-h-screen bg-brand-50 text-brand-900 font-sans selection:bg-brand-500 selection:text-white relative">
-      <FloatingParticles />
+      <Suspense fallback={<EmptyFallback />}>
+        <FloatingParticles />
+      </Suspense>
       <Header />
       
       <main className="relative">
         <Hero />
-        <About />
-        <Services />
-        <Testimonials />
-        <PeriodontalTest />
-        <Contact />
+        <Suspense fallback={<EmptyFallback />}>
+          <About />
+          <Services />
+          <Testimonials />
+          <PeriodontalTest />
+          <Contact />
+        </Suspense>
       </main>
 
       <footer className="bg-brand-100 py-8 border-t border-brand-200 text-center relative z-10">
@@ -32,7 +41,9 @@ export const HomePage: React.FC = () => {
         </div>
       </footer>
 
-      <WhatsAppButton />
+      <Suspense fallback={<EmptyFallback />}>
+        <WhatsAppButton />
+      </Suspense>
     </div>
   );
 };

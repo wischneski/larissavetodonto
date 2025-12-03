@@ -10,24 +10,60 @@
     <link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
     <link rel="shortcut icon" href="/images/favicon-32x32.png">
     <link rel="apple-touch-icon" href="/images/favicon-32x32.png">
+    <!-- Preload da imagem LCP (hero image) -->
+    <link rel="preload" as="image" href="/images/dr-larissa.webp" type="image/webp" fetchpriority="high">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <!-- Meta Pixel Code -->
-    <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '799867389702131');
-    fbq('track', 'PageView');
-    </script>
-    <!-- End Meta Pixel Code -->
+    <!-- Preload fontes para evitar bloqueio de renderização -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap"></noscript>
+    <!-- CSS crítico inline para evitar FOUC -->
+    <style>
+      /* Critical CSS - acima do fold */
+      *,::before,::after{box-sizing:border-box;border:0 solid}
+      html{line-height:1.5;-webkit-text-size-adjust:100%;font-family:'Plus Jakarta Sans',ui-sans-serif,system-ui,sans-serif}
+      body{margin:0;line-height:inherit;background-color:#fdfbf7}
+      #root{min-height:100vh}
+      .font-display{font-family:'Playfair Display',ui-serif,Georgia,serif}
+      /* Animations para Hero (substitui framer-motion) */
+      @keyframes spin{to{transform:rotate(360deg)}}
+      @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+      @keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+      .animate-spin{animation:spin 1s linear infinite}
+      .animate-fade-in{animation:fadeIn 1s ease-out forwards;opacity:0}
+      .animate-fade-in-up{animation:fadeInUp 1s ease-out forwards;opacity:0}
+    </style>
     <meta name="facebook-domain-verification" content="xhbmddhrrll18c7ztxfnnlf3qbm2ik" />
+    
+    <!-- Scripts de terceiros adiados para após FCP -->
+    <script>
+      // Carrega scripts de analytics após a página estar interativa
+      function loadAnalytics() {
+        // Meta Pixel
+        !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+        n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
+        (window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init','799867389702131');fbq('track','PageView');
+        
+        // Google Analytics
+        var gs=document.createElement('script');gs.async=true;
+        gs.src='https://www.googletagmanager.com/gtag/js?id=AW-11482648646';
+        document.head.appendChild(gs);
+        window.dataLayer=window.dataLayer||[];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js',new Date());gtag('config','AW-11482648646');
+      }
+      // Aguarda o browser estar idle ou timeout de 3s
+      if('requestIdleCallback' in window){
+        requestIdleCallback(loadAnalytics,{timeout:3000});
+      }else{
+        setTimeout(loadAnalytics,2000);
+      }
+    </script>
   </head>
   <body>
     <!-- Meta Pixel noscript fallback -->
@@ -35,6 +71,6 @@
     src="https://www.facebook.com/tr?id=799867389702131&ev=PageView&noscript=1"
     /></noscript>
     <div id="root"></div>
-  <script type="module" src="/index.tsx"></script>
-</body>
+    <script type="module" src="/index.tsx"></script>
+  </body>
 </html>

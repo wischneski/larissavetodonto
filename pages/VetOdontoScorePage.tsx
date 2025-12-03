@@ -85,31 +85,31 @@ const question1Options = [
 ];
 
 const question2Options = [
-  { value: 0, image: '/images/1.jpg', alt: 'Sem tártaro', label: 'Sem tártaro', iconType: 'check' as const },
-  { value: 1, image: '/images/22_moderate_calculus.jpg', alt: 'Tártaro presente', label: 'Tártaro presente', iconType: 'alert' as const },
-  { value: 2, image: '/images/23_advanced_calculus.jpg', alt: 'Tártaro cobrindo todos os dentes', label: 'Tártaro cobrindo todos os dentes', iconType: 'alert-orange' as const },
-  { value: 3, image: '/images/24_severe_calculus.jpg', alt: 'Grande quantidade de placa de Tártaro', label: 'Grande quantidade de placa de Tártaro', iconType: 'x' as const }
+  { value: 0, image: '/images/1.webp', alt: 'Sem tártaro', label: 'Sem tártaro', iconType: 'check' as const },
+  { value: 1, image: '/images/22_moderate_calculus.webp', alt: 'Tártaro presente', label: 'Tártaro presente', iconType: 'alert' as const },
+  { value: 2, image: '/images/23_advanced_calculus.webp', alt: 'Tártaro cobrindo todos os dentes', label: 'Tártaro cobrindo todos os dentes', iconType: 'alert-orange' as const },
+  { value: 3, image: '/images/24_severe_calculus.webp', alt: 'Grande quantidade de placa de Tártaro', label: 'Grande quantidade de placa de Tártaro', iconType: 'x' as const }
 ];
 
 const question3Options = [
-  { value: 0, image: '/images/31b_no_inflammation.jpg', alt: 'Gengiva saudável', label: 'Gengiva rosada ou com a pigmentação natural', iconType: 'check' as const },
-  { value: 1, image: '/images/32b_moderate_inflammation.jpg', alt: 'Inflamação moderada', label: 'A borda da gengiva está vermelha', iconType: 'alert' as const },
-  { value: 2, image: '/images/33_advanced_inflammation.jpg', alt: 'Inflamação avançada', label: 'A gengiva está vermelha ao longo de toda boca', iconType: 'alert-orange' as const },
-  { value: 3, image: '/images/34b_severe_inflammation.jpg', alt: 'Inflamação severa', label: 'Existe sangramento ou diminuição da gengiva e a raiz do dente está aparecendo', iconType: 'x' as const }
+  { value: 0, image: '/images/31b_no_inflammation.webp', alt: 'Gengiva saudável', label: 'Gengiva rosada ou com a pigmentação natural', iconType: 'check' as const },
+  { value: 1, image: '/images/32b_moderate_inflammation.webp', alt: 'Inflamação moderada', label: 'A borda da gengiva está vermelha', iconType: 'alert' as const },
+  { value: 2, image: '/images/33_advanced_inflammation.webp', alt: 'Inflamação avançada', label: 'A gengiva está vermelha ao longo de toda boca', iconType: 'alert-orange' as const },
+  { value: 3, image: '/images/34b_severe_inflammation.webp', alt: 'Inflamação severa', label: 'Existe sangramento ou diminuição da gengiva e a raiz do dente está aparecendo', iconType: 'x' as const }
 ];
 
 const question5Options = [
-  { value: 0, image: '/images/41_normal.jpg', alt: 'Mordida normal', label: 'Os caninos se encaixam perfeitamente', iconType: 'check' as const },
-  { value: 1, image: '/images/42_single_tooth_displaced.jpg', alt: 'Dentes desalinhados', label: 'Parece que alguns dentes estão desalinhados', iconType: 'alert' as const },
-  { value: 2, image: '/images/43_mandible_short.jpg', alt: 'Dentes sobrepostos', label: 'Existem dentes se sobrepondo', iconType: 'alert-orange' as const },
-  { value: 3, image: '/images/44_mandible_long.jpg', alt: 'Prognatismo', label: 'Os dentes de baixo estão bem para frente', iconType: 'x' as const }
+  { value: 0, image: '/images/41_normal.webp', alt: 'Mordida normal', label: 'Os caninos se encaixam perfeitamente', iconType: 'check' as const },
+  { value: 1, image: '/images/42_single_tooth_displaced.webp', alt: 'Dentes desalinhados', label: 'Parece que alguns dentes estão desalinhados', iconType: 'alert' as const },
+  { value: 2, image: '/images/43_mandible_short.webp', alt: 'Dentes sobrepostos', label: 'Existem dentes se sobrepondo', iconType: 'alert-orange' as const },
+  { value: 3, image: '/images/44_mandible_long.webp', alt: 'Prognatismo', label: 'Os dentes de baixo estão bem para frente', iconType: 'x' as const }
 ];
 
 const question6Options = [
-  { value: 0, image: '/images/51_intact.jpg', alt: 'Dente intacto', label: "A superfície do dente está intacta", iconType: 'check' as const },
-  { value: 1, image: '/images/54_uncompl.jpg', alt: 'Quebra sem pinta', label: "O dente está quebrado mas não aparece nenhuma 'pinta'", iconType: 'alert' as const },
-  { value: 2, image: '/images/53_old.jpg', alt: 'Quebra com pinta castanha', label: "O dente está quebrado e apresenta uma 'pinta' castanha ou preta no centro", iconType: 'alert-orange' as const },
-  { value: 3, image: '/images/52a_fresh.jpg', alt: 'Quebra com pinta vermelha', label: "O dente está quebrado e apresenta uma 'pinta' vermelha e pode estar sangrando", iconType: 'x' as const }
+  { value: 0, image: '/images/51_intact.webp', alt: 'Dente intacto', label: "A superfície do dente está intacta", iconType: 'check' as const },
+  { value: 1, image: '/images/54_uncompl.webp', alt: 'Quebra sem pinta', label: "O dente está quebrado mas não aparece nenhuma 'pinta'", iconType: 'alert' as const },
+  { value: 2, image: '/images/53_old.webp', alt: 'Quebra com pinta castanha', label: "O dente está quebrado e apresenta uma 'pinta' castanha ou preta no centro", iconType: 'alert-orange' as const },
+  { value: 3, image: '/images/52a_fresh.webp', alt: 'Quebra com pinta vermelha', label: "O dente está quebrado e apresenta uma 'pinta' vermelha e pode estar sangrando", iconType: 'x' as const }
 ];
 
 export const VetOdontoScorePage: React.FC = () => {
@@ -172,7 +172,7 @@ export const VetOdontoScorePage: React.FC = () => {
             onAnswer={handleAnswer}
             onPrevious={handlePrevious}
             showPrevious={currentStep > 0}
-            imageSrc={question.id === 7 ? '/images/61b_primary_upper.jpg' : undefined}
+            imageSrc={question.id === 7 ? '/images/61b_primary_upper.webp' : undefined}
             imageAlt={question.id === 7 ? 'Dentes de leite' : undefined}
             imageLabel={question.id === 7 ? 'Vejo um ou mais dentes de leite' : undefined}
           />

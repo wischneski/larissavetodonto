@@ -19,6 +19,29 @@ export default defineConfig(({ mode }) => {
         alias: {
           '@': path.resolve(__dirname, '.'),
         }
-      }
+      },
+      build: {
+        // Otimizações de bundle
+        target: 'es2020',
+        // Usa esbuild (padrão) - mais rápido que terser
+        minify: 'esbuild',
+        // Gerar CSS separado para permitir carregamento assíncrono
+        cssCodeSplit: true,
+        rollupOptions: {
+          output: {
+            // Separar chunks para melhor caching e lazy loading
+            manualChunks: {
+              // React core - carregado sempre
+              'vendor-react': ['react', 'react-dom', 'react-router-dom'],
+              // Framer motion - pesado, lazy loaded com páginas
+              'vendor-motion': ['framer-motion'],
+              // Ícones - carregados sob demanda
+              'vendor-icons': ['lucide-react'],
+            },
+          },
+        },
+        // Aumentar limite de warning para chunks esperados
+        chunkSizeWarningLimit: 200,
+      },
     };
 });

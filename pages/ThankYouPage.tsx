@@ -1,14 +1,36 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { CheckCircle, Heart, ArrowRight } from 'lucide-react';
 import { getWhatsAppLinkWithMessage } from '../services/whatsapp';
 import { useNavigate } from 'react-router-dom';
 
+// Declaração global do gtag
+declare global {
+  interface Window {
+    gtag?: (...args: any[]) => void;
+  }
+}
+
 export const ThankYouPage: React.FC = () => {
   const navigate = useNavigate();
 
+  useEffect(() => {
+    // Dispara o evento de conversão do Google Ads
+    if (window.gtag) {
+      // Gera um transaction_id único usando timestamp + random
+      const transactionId = `TXN-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+
+      window.gtag('event', 'conversion', {
+        'send_to': 'AW-11482648646/rvyeCKChgsobEMagreMq',
+        'transaction_id': transactionId
+      });
+
+      console.log('Google Ads conversion tracked with ID:', transactionId);
+    }
+  }, []);
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-brand-50 via-white to-brand-100 flex items-center justify-center px-4 py-12 relative overflow-hidden">
+    <div className="min-h-screen bg-linear-to-br from-brand-50 via-white to-brand-100 flex items-center justify-center px-4 py-12 relative overflow-hidden">
       {/* Decorative background elements */}
       <div className="absolute top-20 left-10 w-64 h-64 bg-brand-200/40 rounded-full blur-3xl animate-pulse" />
       <div className="absolute bottom-20 right-10 w-96 h-96 bg-brand-300/30 rounded-full blur-3xl animate-pulse delay-700" />

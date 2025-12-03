@@ -60,7 +60,7 @@ export const Testimonials: React.FC = () => {
               className="relative group"
             >
               {/* Card */}
-              <div className="bg-white p-6 md:p-8 rounded-t-[2rem] md:rounded-t-[3rem] rounded-b-2xl shadow-xl shadow-brand-900/5 border border-brand-100 h-full flex flex-col hover:-translate-y-2 transition-transform duration-300">
+              <div className="bg-white p-6 md:p-8 rounded-t-4xl md:rounded-t-[3rem] rounded-b-2xl shadow-xl shadow-brand-900/5 border border-brand-100 h-full flex flex-col hover:-translate-y-2 transition-transform duration-300">
                 
                 {/* Quote Icon */}
                 <div className="mb-4 md:mb-6">

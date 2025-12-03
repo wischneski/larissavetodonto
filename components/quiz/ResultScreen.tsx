@@ -104,7 +104,7 @@ export const ResultScreen: React.FC<ResultScreenProps> = ({ score }) => {
       {/* Placeholder checkout URL - replace when you provide the real checkout link */}
       <div>
         <button
-          onClick={() => window.open('https://payfast.greenn.com.br/147857', '_blank')}
+          onClick={() => window.open('https://payfast.greenn.com.br/redirect/247284', '_blank')}
           className="block w-full py-3 md:py-4 bg-brand-700 text-white rounded-xl font-bold shadow-lg hover:bg-brand-800 transition-colors text-sm md:text-base"
         >
           Baixar Método para Acabar com Mau Hálito do seu Pet
