@@ -20,189 +20,158 @@
     <meta name="twitter:title" content="Dra. Larissa - Odontologia Veterinária Especializada">
     <meta name="twitter:description" content="Especialista em odontologia veterinária para cães, gatos e animais exóticos.">
     <meta name="twitter:image" content="https://larissavetodonto.com/images/dr-larissa.webp">
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-    <link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
-    <link rel="shortcut icon" href="/images/favicon-32x32.png">
+    <!-- Favicon - apenas essenciais -->
+    <link rel="icon" href="/images/favicon-32x32.png" type="image/png">
     <link rel="apple-touch-icon" href="/images/favicon-32x32.png">
-    <!-- Preload da imagem LCP (hero image) -->
+    
+    <!-- CRÍTICO: Preload da imagem LCP PRIMEIRO - antes de qualquer outra coisa -->
     <link rel="preload" as="image" href="/images/dr-larissa.webp" type="image/webp" fetchpriority="high">
     
+    <!-- Preconnect para fontes - estabelece conexão antecipada -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Preload fontes para evitar bloqueio de renderização -->
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap">
+    
+    <!-- Fontes com display=swap para evitar FOIT (Flash of Invisible Text) -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap"></noscript>
-    <!-- CSS crítico inline para evitar FOUC -->
+    
+    <!-- CSS crítico inline MÍNIMO - apenas para primeiro paint -->
     <style>
-      /* Critical CSS - Reset e base */
+      /* Reset mínimo */
       *,::before,::after{box-sizing:border-box;border:0 solid}
-      html{line-height:1.5;-webkit-text-size-adjust:100%;font-family:'Plus Jakarta Sans',ui-sans-serif,system-ui,sans-serif}
-      body{margin:0;line-height:inherit;background-color:#fdfbf7}
+      html{line-height:1.5;font-family:system-ui,-apple-system,sans-serif}
+      body{margin:0;background:#fdfbf7}
       #root{min-height:100vh}
+      img{max-width:100%;height:auto;display:block}
       
-      /* Brand colors */
-      .bg-brand-50{background-color:#fdfbf7}
-      .bg-brand-100{background-color:#f5f0e8}
-      .bg-brand-500{background-color:#a87b62}
-      .bg-brand-900{background-color:#2d2a26}
+      /* Fonte display com fallback */
+      .font-display{font-family:'Playfair Display',Georgia,serif}
+      
+      /* Layout crítico para Hero */
+      .min-h-\[90vh\]{min-height:90vh}
+      .flex{display:flex}
+      .grid{display:grid}
+      .items-center{align-items:center}
+      .justify-center{justify-content:center}
+      .relative{position:relative}
+      .fixed{position:fixed}
+      .absolute{position:absolute}
+      .inset-0{inset:0}
+      .top-0{top:0}
+      .left-0{left:0}
+      .right-0{right:0}
+      .z-50{z-index:50}
+      .z-10{z-index:10}
+      .-z-10{z-index:-10}
+      .overflow-hidden{overflow:hidden}
+      .px-4{padding-left:1rem;padding-right:1rem}
+      .pt-24{padding-top:6rem}
+      .py-8{padding-top:2rem;padding-bottom:2rem}
+      .gap-8{gap:2rem}
+      .mx-auto{margin-left:auto;margin-right:auto}
+      .mb-4{margin-bottom:1rem}
+      .mb-6{margin-bottom:1.5rem}
+      .mb-8{margin-bottom:2rem}
+      .w-full{width:100%}
+      .h-full{height:100%}
+      .max-w-\[280px\]{max-width:280px}
+      .order-1{order:1}
+      .order-2{order:2}
+      .text-left{text-align:left}
+      .flex-col{flex-direction:column}
+      
+      /* Cores brand */
+      .bg-brand-50{background:#fdfbf7}
+      .bg-brand-500{background:#a87b62}
+      .bg-brand-900{background:#2d2a26}
       .text-brand-500{color:#a87b62}
       .text-brand-600{color:#8b6b56}
       .text-brand-800{color:#4a433c}
       .text-brand-900{color:#2d2a26}
       .text-white{color:#fff}
-      .border-brand-100{border-color:#f5f0e8}
-      .border-brand-300{border-color:#d4c4b5}
       .border-white{border-color:#fff}
       
-      /* Typography */
-      .font-display{font-family:'Playfair Display',ui-serif,Georgia,serif}
+      /* Tipografia essencial */
+      .text-xs{font-size:.75rem}
+      .text-sm{font-size:.875rem}
+      .text-base{font-size:1rem}
+      .text-lg{font-size:1.125rem}
+      .text-2xl{font-size:1.5rem}
+      .text-4xl{font-size:2.25rem;line-height:2.5rem}
       .font-medium{font-weight:500}
       .font-light{font-weight:300}
-      .font-serif{font-family:'Playfair Display',ui-serif,Georgia,serif}
       .italic{font-style:italic}
-      .text-xs{font-size:0.75rem;line-height:1rem}
-      .text-sm{font-size:0.875rem;line-height:1.25rem}
-      .text-base{font-size:1rem;line-height:1.5rem}
-      .text-lg{font-size:1.125rem;line-height:1.75rem}
-      .text-2xl{font-size:1.5rem;line-height:2rem}
-      .text-4xl{font-size:2.25rem;line-height:2.5rem}
       .uppercase{text-transform:uppercase}
-      .tracking-tight{letter-spacing:-0.025em}
       .leading-tight{line-height:1.25}
       
-      /* Layout */
-      .min-h-screen{min-height:100vh}
-      .min-h-\[90vh\]{min-height:90vh}
-      .relative{position:relative}
-      .absolute{position:absolute}
-      .fixed{position:fixed}
-      .inset-0{inset:0}
-      .top-0{top:0}
-      .left-0{left:0}
-      .right-0{right:0}
-      .z-10{z-index:10}
-      .z-50{z-index:50}
-      .-z-10{z-index:-10}
-      .flex{display:flex}
-      .grid{display:grid}
-      .hidden{display:none}
-      .block{display:block}
-      .items-center{align-items:center}
-      .justify-center{justify-content:center}
-      .justify-between{justify-content:space-between}
-      .gap-2{gap:0.5rem}
-      .gap-3{gap:0.75rem}
-      .gap-4{gap:1rem}
-      .gap-8{gap:2rem}
-      .flex-col{flex-direction:column}
-      .text-left{text-align:left}
-      .text-center{text-align:center}
-      .order-1{order:1}
-      .order-2{order:2}
-      
-      /* Spacing */
-      .px-4{padding-left:1rem;padding-right:1rem}
-      .px-6{padding-left:1.5rem;padding-right:1.5rem}
-      .py-3{padding-top:0.75rem;padding-bottom:0.75rem}
-      .py-4{padding-top:1rem;padding-bottom:1rem}
-      .py-8{padding-top:2rem;padding-bottom:2rem}
-      .pt-24{padding-top:6rem}
-      .mb-1{margin-bottom:0.25rem}
-      .mb-4{margin-bottom:1rem}
-      .mb-6{margin-bottom:1.5rem}
-      .mb-8{margin-bottom:2rem}
-      .mx-auto{margin-left:auto;margin-right:auto}
-      
-      /* Sizing */
-      .w-full{width:100%}
-      .h-full{height:100%}
-      .w-4{width:1rem}
-      .h-4{height:1rem}
-      .max-w-lg{max-width:32rem}
-      .max-w-\[280px\]{max-width:280px}
-      
       /* Visual */
-      .overflow-hidden{overflow:hidden}
       .rounded-full{border-radius:9999px}
-      .rounded-xl{border-radius:0.75rem}
+      .rounded-xl{border-radius:.75rem}
       .rounded-4xl{border-radius:2rem}
       .rounded-t-\[5rem\]{border-top-left-radius:5rem;border-top-right-radius:5rem}
       .rounded-b-4xl{border-bottom-left-radius:2rem;border-bottom-right-radius:2rem}
       .border-4{border-width:4px}
-      .shadow-xl{box-shadow:0 20px 25px -5px rgb(0 0 0 / 0.1)}
-      .shadow-2xl{box-shadow:0 25px 50px -12px rgb(0 0 0 / 0.25)}
+      .shadow-xl{box-shadow:0 20px 25px -5px rgb(0 0 0/.1)}
+      .shadow-2xl{box-shadow:0 25px 50px -12px rgb(0 0 0/.25)}
       .object-cover{object-fit:cover}
       .object-center{object-position:center}
-      .bg-transparent{background-color:transparent}
-      .bg-white{background-color:#fff}
+      .bg-white{background:#fff}
+      .bg-transparent{background:transparent}
       .border{border-width:1px}
-      .opacity-60{opacity:0.6}
-      .blur-3xl{filter:blur(64px)}
-      
-      /* Transitions */
-      .transition-all{transition-property:all;transition-timing-function:cubic-bezier(0.4,0,0.2,1);transition-duration:150ms}
+      .border-brand-300{border-color:#d4c4b5}
+      .transition-all{transition:all .15s}
       
       /* Container */
-      .container{width:100%;margin-left:auto;margin-right:auto;padding-left:1rem;padding-right:1rem}
-      @media(min-width:640px){.container{max-width:640px}}
-      @media(min-width:768px){.container{max-width:768px}}
-      @media(min-width:1024px){.container{max-width:1024px}}
-      @media(min-width:1280px){.container{max-width:1280px}}
+      .container{width:100%;max-width:1280px;margin:0 auto;padding:0 1rem}
       
-      /* Responsive - md breakpoint */
+      /* Animações */
+      @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+      @keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+      .animate-fade-in{animation:fadeIn .6s ease-out forwards;opacity:0}
+      .animate-fade-in-up{animation:fadeInUp .6s ease-out forwards;opacity:0}
+      .animate-spin{animation:spin 1s linear infinite}
+      @keyframes spin{to{transform:rotate(360deg)}}
+      
+      /* Header e glass */
+      .backdrop-blur-md{backdrop-filter:blur(12px)}
+      .bg-white\/80{background:rgb(255 255 255/.8)}
+      .shadow-sm{box-shadow:0 1px 2px 0 rgb(0 0 0/.05)}
+      .glass-card{background:rgba(255,255,255,.85);backdrop-filter:blur(10px)}
+      
+      /* Responsivo - md */
       @media(min-width:768px){
-        .md\:grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+        .md\:grid-cols-2{grid-template-columns:repeat(2,1fr)}
         .md\:flex{display:flex}
         .md\:hidden{display:none}
         .md\:order-1{order:1}
         .md\:order-2{order:2}
         .md\:text-7xl{font-size:4.5rem;line-height:1}
-        .md\:text-sm{font-size:0.875rem}
         .md\:text-xl{font-size:1.25rem}
         .md\:text-lg{font-size:1.125rem}
+        .md\:text-sm{font-size:.875rem}
         .md\:pt-20{padding-top:5rem}
+        .md\:px-8{padding-left:2rem;padding-right:2rem}
+        .md\:py-4{padding-top:1rem;padding-bottom:1rem}
+        .md\:gap-12{gap:3rem}
+        .md\:gap-4{gap:1rem}
         .md\:mb-0{margin-bottom:0}
         .md\:mb-6{margin-bottom:1.5rem}
         .md\:mb-8{margin-bottom:2rem}
         .md\:mb-10{margin-bottom:2.5rem}
-        .md\:px-8{padding-left:2rem;padding-right:2rem}
-        .md\:py-4{padding-top:1rem;padding-bottom:1rem}
-        .md\:gap-4{gap:1rem}
-        .md\:gap-12{gap:3rem}
         .md\:max-w-md{max-width:28rem}
         .md\:border-8{border-width:8px}
         .md\:rounded-t-\[10rem\]{border-top-left-radius:10rem;border-top-right-radius:10rem}
         .md\:min-h-screen{min-height:100vh}
       }
-      @media(min-width:640px){
-        .sm\:flex-row{flex-direction:row}
-      }
-      
-      /* Animations */
-      @keyframes spin{to{transform:rotate(360deg)}}
-      @keyframes fadeIn{from{opacity:0}to{opacity:1}}
-      @keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-      .animate-spin{animation:spin 1s linear infinite}
-      .animate-fade-in{animation:fadeIn 0.8s ease-out forwards;opacity:0}
-      .animate-fade-in-up{animation:fadeInUp 0.8s ease-out forwards;opacity:0}
-      
-      /* Glass card effect */
-      .glass-card{background:rgba(255,255,255,0.85);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
-      
-      /* Header styles */
-      .backdrop-blur-md{backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
-      .bg-white\/80{background-color:rgb(255 255 255 / 0.8)}
-      .shadow-sm{box-shadow:0 1px 2px 0 rgb(0 0 0 / 0.05)}
+      @media(min-width:640px){.sm\:flex-row{flex-direction:row}}
+      .hidden{display:none}
     </style>
+    
     <meta name="facebook-domain-verification" content="xhbmddhrrll18c7ztxfnnlf3qbm2ik" />
     
-    <!-- Scripts de terceiros adiados para após FCP -->
+    <!-- Analytics com carregamento adiado (após LCP) -->
     <script>
-      // Carrega scripts de analytics após a página estar interativa
-      function loadAnalytics() {
+      function loadAnalytics(){
         // Meta Pixel
         !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
         n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
@@ -210,8 +179,7 @@
         t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
         (window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
         fbq('init','799867389702131');fbq('track','PageView');
-        
-        // Google Analytics
+        // Google Ads
         var gs=document.createElement('script');gs.async=true;
         gs.src='https://www.googletagmanager.com/gtag/js?id=AW-11482648646';
         document.head.appendChild(gs);
@@ -219,9 +187,8 @@
         function gtag(){dataLayer.push(arguments);}
         gtag('js',new Date());gtag('config','AW-11482648646');
       }
-      // Aguarda o browser estar idle ou timeout de 3s
       if('requestIdleCallback' in window){
-        requestIdleCallback(loadAnalytics,{timeout:3000});
+        requestIdleCallback(loadAnalytics,{timeout:4000});
       }else{
         setTimeout(loadAnalytics,2000);
       }
@@ -229,9 +196,7 @@
   </head>
   <body>
     <!-- Meta Pixel noscript fallback -->
-    <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=799867389702131&ev=PageView&noscript=1"
-    /></noscript>
+    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=799867389702131&ev=PageView&noscript=1"/></noscript>
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
   </body>
