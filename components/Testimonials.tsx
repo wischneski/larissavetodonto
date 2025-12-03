@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { Quote, Star } from 'lucide-react';
 import { Testimonial } from '../types';
 
@@ -51,13 +50,10 @@ export const Testimonials: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
           {testimonials.map((item, index) => (
-            <motion.div
+            <div
               key={item.id}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
-              className="relative group"
+              className="relative group animate-fade-in-up"
+              style={{ animationDelay: `${index * 0.15}s` }}
             >
               {/* Card */}
               <div className="bg-white p-6 md:p-8 rounded-t-4xl md:rounded-t-[3rem] rounded-b-2xl shadow-xl shadow-brand-900/5 border border-brand-100 h-full flex flex-col hover:-translate-y-2 transition-transform duration-300">
@@ -87,7 +83,7 @@ export const Testimonials: React.FC = () => {
                   <p className="text-brand-500 text-[10px] md:text-xs font-medium uppercase tracking-wide">{item.petName}</p>
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

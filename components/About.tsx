@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { Award, Heart } from 'lucide-react';
 
 export const About: React.FC = () => {
@@ -9,12 +8,7 @@ export const About: React.FC = () => {
         <div className="flex flex-col-reverse lg:flex-row items-center gap-10 md:gap-20">
           
           {/* Content Side */}
-          <motion.div 
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="lg:w-1/2"
-          >
+          <div className="lg:w-1/2 animate-fade-in-up">
             <h2 className="text-3xl md:text-5xl font-display text-brand-900 mb-6 md:mb-8 leading-tight">
               Encontre o equilíbrio entre a <span className="italic text-brand-500">Saúde</span> e o <span className="italic text-brand-500">Bem-estar</span> do seu pet.
             </h2>
@@ -35,15 +29,10 @@ export const About: React.FC = () => {
                 <p className="text-sm text-brand-600">Ambiente preparado para reduzir o estresse e ansiedade.</p>
               </div>
             </div>
-          </motion.div>
+          </div>
 
            {/* Image Side */}
-           <motion.div 
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="lg:w-1/2 relative w-full"
-          >
+           <div className="lg:w-1/2 relative w-full animate-fade-in">
             <div className="relative">
               <div className="absolute top-4 -left-4 w-full h-full border-2 border-brand-300 rounded-4xl -z-10" />
               <picture>
@@ -60,7 +49,7 @@ export const About: React.FC = () => {
                 <p className="font-display italic text-brand-900 text-lg">"Odontologia veterinária não é estética, é saúde e longevidade."</p>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

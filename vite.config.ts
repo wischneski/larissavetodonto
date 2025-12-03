@@ -27,13 +27,20 @@ export default defineConfig(({ mode }) => {
         minify: 'esbuild',
         // Gerar CSS separado para permitir carregamento assíncrono
         cssCodeSplit: true,
+        // Não fazer modulepreload de chunks lazy
+        modulePreload: {
+          resolveDependencies: (filename, deps) => {
+            // Não preload vendor-motion - ele é lazy loaded
+            return deps.filter(dep => !dep.includes('vendor-motion'));
+          }
+        },
         rollupOptions: {
           output: {
             // Separar chunks para melhor caching e lazy loading
             manualChunks: {
               // React core - carregado sempre
               'vendor-react': ['react', 'react-dom', 'react-router-dom'],
-              // Framer motion - pesado, lazy loaded com páginas
+              // Framer motion - lazy loaded apenas com páginas que usam
               'vendor-motion': ['framer-motion'],
               // Ícones - carregados sob demanda
               'vendor-icons': ['lucide-react'],

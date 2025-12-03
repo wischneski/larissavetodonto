@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { Stethoscope, Bone, Sparkles, Activity, ArrowUpRight } from 'lucide-react';
 import { ServiceItem } from '../types';
 
@@ -49,43 +48,26 @@ export const Services: React.FC = () => {
         
         {/* Header da Seção */}
         <div className="flex flex-col md:flex-row justify-between items-end mb-10 md:mb-16 gap-4 md:gap-6">
-          <div className="max-w-2xl">
-            <motion.span 
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              className="text-brand-500 uppercase tracking-widest text-xs font-bold mb-2 md:mb-3 block"
-            >
+          <div className="max-w-2xl animate-fade-in-up">
+            <span className="text-brand-500 uppercase tracking-widest text-xs font-bold mb-2 md:mb-3 block">
               Excelência Técnica
-            </motion.span>
-            <motion.h2 
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              className="text-3xl md:text-5xl font-display text-brand-900 leading-tight"
-            >
+            </span>
+            <h2 className="text-3xl md:text-5xl font-display text-brand-900 leading-tight">
               Tratamentos <span className="italic text-brand-500">Exclusivos</span>
-            </motion.h2>
+            </h2>
           </div>
-          <motion.p 
-            initial={{ opacity: 0, x: -10 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.2 }}
-            className="text-brand-600 max-w-md text-right hidden md:block"
-          >
+          <p className="text-brand-600 max-w-md text-right hidden md:block animate-fade-in">
             Tecnologia de ponta e conhecimento especializado para diagnósticos precisos e recuperação rápida.
-          </motion.p>
+          </p>
         </div>
 
         {/* Bento Grid Layout - Reduced height on mobile (auto-rows-[280px]) */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 auto-rows-[280px] md:auto-rows-[400px]">
           {services.map((service, index) => (
-            <motion.div
+            <div
               key={service.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true, margin: "-50px" }}
-              className={`group relative rounded-3xl md:rounded-4xl overflow-hidden cursor-pointer ${service.className}`}
+              className={`group relative rounded-3xl md:rounded-4xl overflow-hidden cursor-pointer animate-fade-in-up ${service.className}`}
+              style={{ animationDelay: `${index * 0.1}s` }}
             >
               {/* Background Image with Zoom Effect */}
               <div className="absolute inset-0 w-full h-full">
@@ -125,7 +107,7 @@ export const Services: React.FC = () => {
                   </p>
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>
