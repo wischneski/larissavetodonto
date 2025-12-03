@@ -1,0 +1,10 @@
+# Robots.txt para larissavetodonto.com
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://larissavetodonto.com/sitemap.xml
+
+# Bloquear pastas de assets desnecessários para indexação
+Disallow: /assets/*.js$
+Disallow: /assets/*.css$
