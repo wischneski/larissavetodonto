@@ -1,1 +1,0 @@
-const e="554796694624",a="Olá Dra Larissa, tudo bem? Acabei de realizar o teste de saúde bucal do meu pet e gostaria de agendar uma consulta para meu Pet.";function o(){const t=encodeURIComponent(a);return`https://wa.me/${e}?text=${t}`}function s(t){const n=encodeURIComponent(t||a);return`https://wa.me/${e}?text=${n}`}export{s as a,o as g};
