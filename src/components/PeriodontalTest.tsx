@@ -1,9 +1,11 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { ClipboardCheck, ChevronRight } from 'lucide-react';
+'use client'
+
+import React from 'react'
+import { useRouter } from 'next/navigation'
+import { ClipboardCheck, ChevronRight } from 'lucide-react'
 
 export const PeriodontalTest: React.FC = () => {
-  const navigate = useNavigate();
+  const router = useRouter()
 
   return (
     <>
@@ -25,7 +27,7 @@ export const PeriodontalTest: React.FC = () => {
             </p>
             
             <button
-              onClick={() => navigate('/vetodontoscore')}
+              onClick={() => router.push('/vetodontoscore')}
               className="group bg-brand-500 text-white px-6 py-4 md:px-8 md:py-5 rounded-full text-base md:text-lg font-medium shadow-2xl shadow-brand-500/30 flex items-center gap-3 mx-auto transition-all hover:bg-brand-400 hover:scale-105 active:scale-95"
             >
               <ClipboardCheck className="w-5 h-5" />
