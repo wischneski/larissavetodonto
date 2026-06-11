@@ -1,18 +1,26 @@
-import React, { useMemo } from 'react';
+'use client'
 
-// CSS-only floating particles - no framer-motion dependency
-export const FloatingParticles: React.FC = () => {
-  // Particles for light theme: Gold, Copper, Soft White
-  const particles = useMemo(() => 
+import React, { useState, useEffect, useMemo } from 'react'
+
+export function FloatingParticles() {
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  const particles = useMemo(() =>
     Array.from({ length: 12 }).map((_, i) => ({
       id: i,
       x: Math.random() * 100,
       y: Math.random() * 100,
-      size: Math.random() * 80 + 40, 
+      size: Math.random() * 80 + 40,
       duration: Math.random() * 15 + 20,
       delay: Math.random() * 5,
-      color: i % 2 === 0 ? 'bg-brand-500/5' : 'bg-brand-300/10'
-    })), []);
+      color: i % 2 === 0 ? 'bg-brand-500/5' : 'bg-brand-300/10',
+    })), [])
+
+  if (!mounted) return null
 
   return (
     <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
@@ -37,5 +45,5 @@ export const FloatingParticles: React.FC = () => {
         />
       ))}
     </div>
-  );
-};
+  )
+}
